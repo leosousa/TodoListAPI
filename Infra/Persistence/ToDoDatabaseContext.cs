@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Infra.Persistence.Seed;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Entities = Domain.Entities;
 
@@ -20,6 +21,8 @@ public class ToDoDatabaseContext : DbContext
         // Cada classe dentro da pasta Configurations tem suas definições de tabela.
         // Elas são carregadas de forma automática na chamada abaixo
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        SeedGenerator.GenerateSeedData(modelBuilder);
 
         base.OnModelCreating(modelBuilder);
     }

@@ -1,4 +1,6 @@
-﻿using Entities = Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Entities = Domain.Entities;
 
 namespace Infra.Persistence.Seed;
 
@@ -6,15 +8,13 @@ namespace Infra.Persistence.Seed;
 /// Classe que insere algumas informações iniciais ao criar o banco de dados
 /// </summary>
 /// <remarks>Utilizada para popular o banco inicial para testes</remarks>
-static class ToDoDatabaseContextSeed
+static class SeedGenerator
 {
-    public static async Task SeedSampleDataAsync(ToDoDatabaseContext context)
+    public static void GenerateSeedData(ModelBuilder builder)
     {
-        // Só executa esse método caso o banco esteja vazio
-        if (context.Tasks.Any()) return;
-
-        context.Tasks.AddRange(
-            new Entities.Task { 
+        builder.Entity<Entities.Task>().HasData(
+            new Entities.Task
+            {
                 Id = 1,
                 Description = "[Teste] - Comprar legumes",
                 IsCompleted = true
@@ -32,7 +32,5 @@ static class ToDoDatabaseContextSeed
                 IsCompleted = false
             }
         );
-
-        await context.SaveChangesAsync();
     }
 }
