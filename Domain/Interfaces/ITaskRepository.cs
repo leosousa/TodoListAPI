@@ -17,7 +17,7 @@ public interface ITaskRepository
     /// </summary>
     /// <param name="id">Identificador da tarefa buscada</param>
     /// <returns>Tarefa encontrada</returns>
-    Task<Entities.Task> GetByIdAsync(int id);
+    Task<Entities.Task?> GetByIdAsync(int id);
 
     /// <summary>
     /// Cadastra uma nova tarefa na base de dados
