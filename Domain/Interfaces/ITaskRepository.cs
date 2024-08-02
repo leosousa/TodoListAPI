@@ -24,5 +24,5 @@ public interface ITaskRepository
     /// </summary>
     /// <param name="task">Tarefa a ser cadastrada</param>
     /// <returns>Identificador da tarefa cadastrada</returns>
-    Task<int> Create(Entities.Task task);
+    Task<int> CreateAsync(Entities.Task task);
 }
