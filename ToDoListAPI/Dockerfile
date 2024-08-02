@@ -30,4 +30,4 @@ COPY --from=build /app/dist ./
 EXPOSE 80
 
 # Define o comando que será executado quando o contêiner iniciar, que nesse caso, inicia a aplicação .NET
-ENTRYPOINT ["dotnet", "TodoListAPI.dll"]
+ENTRYPOINT ["dotnet", "ToDoListAPI.dll"]
