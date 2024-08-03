@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.UseCases.Tasks.Delete;
 
-public sealed class DeleteTaskCommandHandler : IRequestHandler<DeleteTaskCommand, int>
+public sealed class DeleteTaskCommandHandler : IRequestHandler<DeleteTaskCommand, bool>
 {
     private readonly ITaskRepository _repository;
 
@@ -12,14 +12,18 @@ public sealed class DeleteTaskCommandHandler : IRequestHandler<DeleteTaskCommand
         _repository = repository;
     }
 
-    public async Task<int> Handle(DeleteTaskCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(DeleteTaskCommand request, CancellationToken cancellationToken)
     {
+        var removedTask = false;
+
+        if (request is null) return await Task.FromResult(removedTask);
+
         var existingTask = await _repository.GetByIdAsync(request.Id);
 
-        if (existingTask is null) return await Task.FromResult(0);
+        if (existingTask is null) return await Task.FromResult(removedTask);
 
-        var affectedRows = await _repository.DeleteAsync(existingTask);
+        removedTask = await _repository.DeleteAsync(existingTask);
 
-        return await Task.FromResult(affectedRows);
+        return await Task.FromResult(removedTask);
     }
 }

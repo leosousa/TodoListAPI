@@ -2,7 +2,7 @@
 
 namespace Application.UseCases.Tasks.Update;
 
-public record EditTaskCommand : IRequest<EditTaskCommandResult?>
+public record UpdateTaskCommand : IRequest<UpdateTaskCommandResult?>
 {
     public required int Id { get; set; }
     public required string Description { get; set; }

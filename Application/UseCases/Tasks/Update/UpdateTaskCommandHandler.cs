@@ -5,18 +5,20 @@ using Entities = Domain.Entities;
 
 namespace Application.UseCases.Tasks.Update;
 
-public sealed class EditTaskCommandHandler : IRequestHandler<EditTaskCommand, EditTaskCommandResult?>
+public sealed class UpdateTaskCommandHandler : IRequestHandler<UpdateTaskCommand, UpdateTaskCommandResult?>
 {
     private readonly ITaskRepository _repository;
 
-    public EditTaskCommandHandler(ITaskRepository repository)
+    public UpdateTaskCommandHandler(ITaskRepository repository)
     {
         _repository = repository;
     }
 
-    public async Task<EditTaskCommandResult?> Handle(EditTaskCommand request, CancellationToken cancellationToken)
+    public async Task<UpdateTaskCommandResult?> Handle(UpdateTaskCommand request, CancellationToken cancellationToken)
     {
-        EditTaskCommandResult? result = null;
+        UpdateTaskCommandResult? result = null;
+
+        if (request is null) return await Task.FromResult(result);
 
         var existingTask = await _repository.GetByIdAsync(request.Id);
 
@@ -29,6 +31,6 @@ public sealed class EditTaskCommandHandler : IRequestHandler<EditTaskCommand, Ed
 
         if (updatedTask is null) return await Task.FromResult(result);
 
-        return await Task.FromResult(new EditTaskCommandResult(updatedTask.Id, updatedTask.Description, updatedTask.IsCompleted));
+        return await Task.FromResult(new UpdateTaskCommandResult(updatedTask.Id, updatedTask.Description, updatedTask.IsCompleted));
     }
 }

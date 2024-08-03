@@ -2,4 +2,7 @@
 
 namespace Application.UseCases.Tasks.Delete;
 
-public record DeleteTaskCommand(int Id) : IRequest<int>;
+public record DeleteTaskCommand : IRequest<bool>
+{
+    public int Id { get; set; }
+}

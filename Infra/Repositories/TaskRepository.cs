@@ -41,10 +41,12 @@ public sealed class TaskRepository : ITaskRepository
         return task;
     }
 
-    public async Task<int> DeleteAsync(Entities.Task task)
+    public async Task<bool> DeleteAsync(Entities.Task task)
     {
         _db.Tasks.Remove(task);
 
-        return await _db.SaveChangesAsync();
+        var affectedRows = await _db.SaveChangesAsync();
+
+        return (affectedRows >= 1);
     }
 }

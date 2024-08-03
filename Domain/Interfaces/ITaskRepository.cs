@@ -37,6 +37,6 @@ public interface ITaskRepository
     /// Remove uma tarefa do banco de dados
     /// </summary>
     /// <param name="task">Tarefa a ser removida</param>
-    /// <returns>Quantidade de registros removidos</returns>
-    Task<int> DeleteAsync(Entities.Task task);
+    /// <returns>Retorna se a tarefa foi ou não removida</returns>
+    Task<bool> DeleteAsync(Entities.Task task);
 }

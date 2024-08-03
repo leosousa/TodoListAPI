@@ -2,9 +2,9 @@
 
 namespace Application.UseCases.Tasks.Update;
 
-public class EditTaskCommandValidator : AbstractValidator<EditTaskCommand>
+public class UpdateTaskCommandValidator : AbstractValidator<UpdateTaskCommand>
 {
-    public EditTaskCommandValidator()
+    public UpdateTaskCommandValidator()
     {
         RuleFor(v => v.Id)
             .NotNull()

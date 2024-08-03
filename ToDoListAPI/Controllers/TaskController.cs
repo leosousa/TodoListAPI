@@ -67,7 +67,7 @@ namespace ToDoListAPI.Controllers
         /// <param name="task">Tarefa a ser atualizada</param>
         /// <returns>Tarefa atualizada</returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, EditTaskCommand task)
+        public async Task<IActionResult> Update(int id, UpdateTaskCommand task)
         {
             if (id != task.Id)
             {
@@ -81,14 +81,19 @@ namespace ToDoListAPI.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Remove uma tarefa já existente
+        /// </summary>
+        /// <param name="id">Identificador da tarefa a ser removida</param>
+        /// <returns>Retorna se a tarefa foi ou não removida</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await Mediator.Send(new DeleteTaskCommand(id));
+            var taskRemoved = await Mediator.Send(new DeleteTaskCommand { Id = id });
 
-            if (result <= 0) return NotFound();
+            if (!taskRemoved) return NotFound();
 
-            return NoContent();
+            return Ok(taskRemoved);
         }
     }
 }

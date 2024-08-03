@@ -17,6 +17,8 @@ public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, Creat
     {
         CreateTaskCommandResult? result = null;
 
+        if (request.Description is null) return await Task.FromResult(result);
+
         var item = new Entities.Task
         {
             Description = request.Description!

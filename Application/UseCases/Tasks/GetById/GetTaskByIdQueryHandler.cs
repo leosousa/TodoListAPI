@@ -16,6 +16,8 @@ public sealed class GetTaskByIdQueryHandler : IRequestHandler<GetTaskByIdQuery, 
     {
         GetTaskByIdQueryResult? result = null;
 
+        if (request is null) return await Task.FromResult(result);
+
         var task = await _repository.GetByIdAsync(request.Id);
 
         if (task is null) return await Task.FromResult(result);
