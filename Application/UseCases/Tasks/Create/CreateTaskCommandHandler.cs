@@ -4,7 +4,7 @@ using Entities = Domain.Entities;
 
 namespace Application.UseCases.Tasks.Create;
 
-public sealed class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, int>
+public class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand, CreateTaskCommandResult?>
 {
     private readonly ITaskRepository _repository;
 
@@ -13,13 +13,19 @@ public sealed class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand
         _repository = repository;
     }
 
-    public Task<int> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
+    public async Task<CreateTaskCommandResult?> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
     {
+        CreateTaskCommandResult? result = null;
+
         var item = new Entities.Task
         {
-            Description = request.Description
+            Description = request.Description!
         };
 
-        return _repository.CreateAsync(item);
+        var newTask = await _repository.CreateAsync(item);
+
+        if (newTask is null) return await Task.FromResult(result);
+
+        return await Task.FromResult(new CreateTaskCommandResult(newTask.Id, newTask.Description, newTask.IsCompleted));
     }
 }

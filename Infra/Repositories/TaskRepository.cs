@@ -14,10 +14,12 @@ public sealed class TaskRepository : ITaskRepository
         _db = db;
     }
 
-    public async Task<int> CreateAsync(Entities.Task task)
+    public async Task<Entities.Task> CreateAsync(Entities.Task task)
     {
         _db.Tasks.Add(task);
-        return await _db.SaveChangesAsync();
+        await _db.SaveChangesAsync();
+
+        return task;
     }
 
     public async Task<IEnumerable<Entities.Task>> GetAllAsync()
@@ -28,5 +30,21 @@ public sealed class TaskRepository : ITaskRepository
     public async Task<Entities.Task?> GetByIdAsync(int id)
     {
         return await _db.Tasks.FirstOrDefaultAsync(task => task.Id == id);
+    }
+
+    public async Task<Entities.Task> UpdateAsync(Entities.Task task)
+    {
+        _db.Tasks.Update(task);
+
+        await _db.SaveChangesAsync();
+
+        return task;
+    }
+
+    public async Task<int> DeleteAsync(Entities.Task task)
+    {
+        _db.Tasks.Remove(task);
+
+        return await _db.SaveChangesAsync();
     }
 }

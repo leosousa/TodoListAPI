@@ -23,6 +23,20 @@ public interface ITaskRepository
     /// Cadastra uma nova tarefa na base de dados
     /// </summary>
     /// <param name="task">Tarefa a ser cadastrada</param>
-    /// <returns>Identificador da tarefa cadastrada</returns>
-    Task<int> CreateAsync(Entities.Task task);
+    /// <returns>Tarefa cadastrada</returns>
+    Task<Entities.Task> CreateAsync(Entities.Task task);
+
+    /// <summary>
+    /// Atualiza uma tarefa no banco de dados
+    /// </summary>
+    /// <param name="task">Tarefa a ser atualizada</param>
+    /// <returns>Tarefa atualizada</returns>
+    Task<Entities.Task> UpdateAsync(Entities.Task task);
+
+    /// <summary>
+    /// Remove uma tarefa do banco de dados
+    /// </summary>
+    /// <param name="task">Tarefa a ser removida</param>
+    /// <returns>Quantidade de registros removidos</returns>
+    Task<int> DeleteAsync(Entities.Task task);
 }

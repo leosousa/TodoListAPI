@@ -1,9 +1,15 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using Application.Base.Behaviors;
+using FluentValidation;
+using System.Reflection;
+
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class DependencyInjectionConfig
 {
     public static void AddApplicationDependencies(this IServiceCollection services)
     {
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
     }
 }

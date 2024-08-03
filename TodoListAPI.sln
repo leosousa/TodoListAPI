@@ -5,17 +5,17 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoListAPI", "ToDoListAPI\ToDoListAPI.csproj", "{95A3C1FB-D3F5-40B8-B8DE-7055BF1E71BA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{DC9D30A3-A3C7-4A80-9BEF-B48501469450}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Core", "1 - Core", "{DC9D30A3-A3C7-4A80-9BEF-B48501469450}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{736A8C80-18FD-46DE-95E5-7C8C22391D48}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Infra", "2 - Infra", "{736A8C80-18FD-46DE-95E5-7C8C22391D48}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{6F4E8E93-2A85-461F-8207-EF7852562766}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{6F4E8E93-2A85-461F-8207-EF7852562766}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{BF0CB20B-B20C-4F27-B77E-5AEDFF0FA45E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{BF0CB20B-B20C-4F27-B77E-5AEDFF0FA45E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{6E54860C-2510-4591-A5A1-DAA6BE0A7D08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{6E54860C-2510-4591-A5A1-DAA6BE0A7D08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "Infra\Infra.csproj", "{A5484C83-C2F6-4B89-97AF-9B8F565D9DA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{A5484C83-C2F6-4B89-97AF-9B8F565D9DA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
